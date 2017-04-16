@@ -21,9 +21,8 @@ class MyHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             soup = BeautifulSoup(data)
             l = []
             name = soup.find("meta", property="og:title")
-            picture = soup.find("img", {"class" : "profilePic silhouette img"})
-            print name
-            print picture
+            picture = soup.find("img", {"class" : "profilePic img"})
+            if not picture: picture = soup.find("img", {"class" : "profilePic silhouette img"}) # Quick fix
             if name: l.append(name["content"])
             if picture: l.append(picture["src"])
             data = json.dumps(l)
